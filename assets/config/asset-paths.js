@@ -37,11 +37,11 @@ const ASSETS = {
   "adOps": "assets/images/backgrounds/ad-ops-center.webp",
 
   "mapIcons": {
-    "pop": "assets/images/map-icons/pop.png",
-    "ila": "assets/images/map-icons/ila.png",
-    "control": "assets/images/map-icons/control.png",
-    "entity": "assets/images/map-icons/entity.png",
-    "radio": "assets/images/map-icons/radio.png"
+    "pop": "assets/images/map-icons-v2/pop.svg",
+    "ila": "assets/images/map-icons-v2/ila.svg",
+    "control": "assets/images/map-icons-v2/control.svg",
+    "entity": "assets/images/map-icons-v2/entity.svg",
+    "radio": "assets/images/map-icons-v2/radio.svg"
   },
 
   // Icons used throughout the presentation

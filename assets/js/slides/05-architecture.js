@@ -47,22 +47,22 @@ const ARCH_ART = {
 /* ------------------------------------------------------------------ */
 function archText(en){
   return {
-    eyebrow:en?'Security Architecture':'المعمارية الأمنية',
+    eyebrow:en?'Security Architecture':'عرض التصميم العام',
     title:en?'Network Components: Isolated Network':'مكونات الشبكة: شبكة معزولة',
     sub:en?'Security zones, trust boundaries, segmentation, and the controlled gateways through which entities connect.'
           :'مناطق الحماية، حدود الثقة، العزل والتجزئة، والبوابات المحكومة التي ترتبط الجهات عبرها بالشبكة.',
 
     zones:[
-      {id:'core',name:en?'Isolated Core':'النواة المعزولة',
-       trust:en?'Trust level 1 — highest':'مستوى الثقة ١ — الأعلى',
+      {id:'core',name:en?'Isolated Core':' الشبكة المركزية المعزولة',
+       trust:en?'Trust level 1 — highest':'مستوى الثقة الاول — الأعلى',
        note:en?'Dual core sites on a protected optical ring, with no direct external reachability.'
-              :'موقعا نواة على حلقة ضوئية محمية، دون أي وصول خارجي مباشر.'},
+              :'موقعا الشبكة المركزية على حلقة ضوئية محمية، دون أي وصول خارجي مباشر.'},
       {id:'agg',name:en?'Aggregation':'طبقة التجميع',
-       trust:en?'Trust level 2 — controlled transit':'مستوى الثقة ٢ — عبور محكوم',
+       trust:en?'Trust level 2 — controlled transit':'مستوى الثقة الثاني — عبور محكوم',
        note:en?'Policy enforcement and per-entity segmentation before traffic reaches the core.'
               :'تطبيق السياسات وفصل كل جهة قبل وصول الحركة إلى النواة.'},
       {id:'access',name:en?'Isolated Access':'الوصول المعزول',
-       trust:en?'Trust level 3 — protected endpoints':'مستوى الثقة ٣ — نقاط تشغيل محمية',
+       trust:en?'Trust level 3 — protected endpoints':'مستوى الثقة الثالث — نقاط تشغيل محمية',
        note:en?'Every entity terminates in its own segment and cannot see the others.'
               :'كل جهة تنتهي في شريحة مستقلة ولا يمكنها رؤية الجهات الأخرى.'}
     ],
@@ -71,10 +71,10 @@ function archText(en){
     gateway:en?'Secure gateway':'بوابة آمنة',
     inspect:en?'Inspection · encryption · policy':'فحص · تشفير · سياسات',
 
-    coreA:en?'Core Site A':'موقع النواة أ',
-    coreB:en?'Core Site B':'موقع النواة ب',
-    coreASub:en?'Primary command & control':'القيادة والسيطرة الأساسية',
-    coreBSub:en?'Hot standby · full redundancy':'احتياطي فوري · تكرار كامل',
+    coreA:en?'Core Site A':'موقع الشبكةالمركزية الاحتياطي',
+    coreB:en?'Core Site B':'موقع الشبكةالمركزية الاساسي',
+    coreASub:en?'Primary command & control':'احتياطي فوري · تكرار كامل',
+    coreBSub:en?'Hot standby · full redundancy':'القيادة والسيطرة الأساسية',
     ring:en?'Protected optical ring':'الحلقة الضوئية المحمية',
     ringSub:en?'DWDM · encrypted lambdas':'DWDM · موجات مشفّرة',
 
@@ -90,7 +90,7 @@ function archText(en){
       {icon:'shield',t:en?'A resilient network that withstands cyberattacks and jamming attempts.'
                         :'شبكة مرنة تتحمل الهجمات السيبرانية ومحاولات التشويش.'},
       {icon:'route',t:en?'Alternate paths (Fiber + Microwave + Satellite) preserve connectivity even when the primary route is cut or disrupted.'
-                       :'مسارات بديلة (Fiber + Microwave + Satellite) لضمان الاتصال حتى في حال قطع أو تعطيل البنية الأساسية.'},
+                       :'مسارات بديلة (الالياف الضوئية و الاتصالات اللاسلكية والاقمار الصناعية) لضمان الاتصال حتى في حال قطع أو تعطيل البنية الأساسية.'},
       {icon:'server',t:en?'Hardened military shelters with backup power and full redundancy sustain command and control.'
                         :'ملاجئ عسكرية محصنة مع طاقة احتياطية وتكرار كامل (Redundancy) يضمن استمرار القيادة والسيطرة.'}
     ],
@@ -98,8 +98,8 @@ function archText(en){
     pathsTitle:en?'Alternate transport paths':'مسارات الاتصال البديلة',
     pathsHint:en?'Click a path to simulate a cut':'اضغط أي مسار لمحاكاة قطعه',
     paths:[
-      {id:'fiber',art:'fiber',name:en?'Fiber':'الألياف البصرية',sub:en?'Primary · high capacity':'أساسي · سعة عالية'},
-      {id:'mw',art:'microwave',name:en?'Microwave':'المايكروويف',sub:en?'Secondary · rapid restore':'ثانوي · استعادة سريعة'},
+      {id:'fiber',art:'fiber',name:en?'Fiber':'الألياف الضوئية',sub:en?'Primary · high capacity':'أساسي · سعة عالية'},
+      {id:'mw',art:'microwave',name:en?'Microwave':'الاتصال اللاسلكي',sub:en?'Secondary · rapid restore':'ثانوي · استعادة سريعة'},
       {id:'sat',art:'satellite',name:en?'Satellite':'الأقمار الصناعية',sub:en?'Beyond terrestrial':'خارج الشبكات الأرضية'}
     ],
     live:en?'Carrying traffic':'يحمل الحركة',
@@ -415,7 +415,7 @@ function bindArchitecture(){
     root.classList.toggle('archDegraded',anyCut);
     const status=root.querySelector('#archPathSimStatus');
     if(status){
-      if(!anyCut){status.className='archPathSimStatus normal';status.textContent=state.lang==='en'?'Normal operation · Fiber carrying traffic':'تشغيل طبيعي · الألياف البصرية تحمل الحركة';}
+      if(!anyCut){status.className='archPathSimStatus normal';status.textContent=state.lang==='en'?'Normal operation · Fiber carrying traffic':'تشغيل طبيعي · الألياف الضوئية تحمل الحركة';}
       else if(activeName){status.className='archPathSimStatus rerouted';status.textContent=(state.lang==='en'?'Traffic automatically rerouted to ':'تم تحويل الحركة تلقائياً إلى ')+activeName;}
       else{status.className='archPathSimStatus outage';status.textContent=state.lang==='en'?'All alternate paths are unavailable':'جميع المسارات البديلة غير متاحة';}
     }

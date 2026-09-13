@@ -25,7 +25,7 @@
   if(fullBtn&&!document.documentElement.requestFullscreen)fullBtn.hidden=true;
 
   let gesture=null;
-  const interactive='button,a,input,select,textarea,.pocMapShell,.osmMap,.dashboardShell,.archx-click,.archx-detail,.pocSiteList,.navrail';
+  const interactive='button,a,input,select,textarea,.pocMapShell,.osmMap,.introNativeMap,.introNativeShell,.dashboardShell,.archx-click,.archx-detail,.pocSiteList,.navrail';
   if(stage){
     stage.addEventListener('pointerdown',e=>{
       if(e.target.closest(interactive))return;

@@ -9,7 +9,7 @@ function coverageSlide(t){
       band:'5g',
       badge:'5G',
       tone:'blue',
-      title:C.label5g||(en?'5G Coverage':'5G تغطية الجيل الخامس'),
+      title:C.label5g||(en?'5G Coverage':'تغطية الجيل الخامس'),
       src:assetUrl(ASSETS.coverage5g||'assets/images/coverage/5g-coverage.png'),
       desc:en?'Private 5G coverage layer for priority mobility and field operations.':'طبقة تغطية الجيل الخامس الخاصة للتنقل والعمليات الميدانية ذات الأولوية.'
     },
@@ -17,7 +17,7 @@ function coverageSlide(t){
       band:'4g',
       badge:'4G',
       tone:'amber',
-      title:C.label4g||(en?'4G Coverage':'4G تغطية الجيل الرابع'),
+      title:C.label4g||(en?'4G Coverage':'تغطية الجيل الرابع'),
       src:assetUrl(ASSETS.coverage4g||'assets/images/coverage/4g-coverage.png'),
       desc:en?'Existing 4G coverage reference for comparison and service baseline.':'مرجع تغطية الجيل الرابع للمقارنة وخط الأساس التشغيلي للخدمة.'
     },
@@ -25,12 +25,12 @@ function coverageSlide(t){
       band:'offshore',
       badge:en?'SEA':'بحر',
       tone:'teal',
-      title:C.labelOffshore||(en?'Offshore Coverage':'تغطية الاتصال البحرية'),
+      title:C.labelOffshore||(en?'Offshore Coverage':'تغطية الاتصال البحري'),
       src:assetUrl(ASSETS.coverageOffshore||'assets/images/coverage/offshore-coverage.png'),
-      desc:en?'Offshore communication coverage across coastal and maritime operating zones.':'نطاق تغطية الاتصال البحرية للمناطق الساحلية والبحرية التشغيلية.'
+      desc:en?'Offshore communication coverage across coastal and maritime operating zones.':'نطاق تغطية الاتصال البحري للمناطق الساحلية والبحرية التشغيلية.'
     }
   ];
-  const active=items.find(x=>x.band==='offshore')||items[0];
+  const active=items.find(x=>x.band==='5g')||items[0];
   const safeAttr=s=>esc(String(s)).replace(/"/g,'&quot;');
   const choice=it=>`<button type="button" class="coverageChoice ${it.band===active.band?'active':''}" data-cover-choice="${it.band}" data-cover-title="${safeAttr(it.title)}" data-cover-src="${safeAttr(it.src)}" data-cover-badge="${safeAttr(it.badge)}" data-cover-desc="${safeAttr(it.desc)}" data-cover-tone="${it.tone}" aria-pressed="${it.band===active.band?'true':'false'}">
     <span class="coverageChoiceBadge tech-${it.band}">${esc(it.badge)}</span>
@@ -98,7 +98,7 @@ function bindCoverage(){
   const activeTitle=root.querySelector('#coverageActiveTitle');
   const activeDesc=root.querySelector('#coverageActiveDesc');
   const activeBadge=root.querySelector('#coverageActiveBadge');
-  let active=root.dataset.active||'offshore';
+  let active=root.dataset.active||'5g';
   const setActive=band=>{
     const it=items[band]||items[active]||Object.values(items)[0];
     if(!it)return;
